@@ -30,8 +30,15 @@ const SCOPES = ['https://www.googleapis.com/auth/drive'];
 
 // Your Google Drive folder ID where files will be uploaded
 // Create a folder in Google Drive and get its ID from the URL
-const DRIVE_FOLDER_ID = 'YOUR_FOLDER_ID_HERE';
+const DRIVE_FOLDER_ID = '1i1WxEGZPxDAF8uaz1h2FX08zDr8Z7JSC';
 
+// AFTER — reads from .env / compose.yml:
+const DRIVE_FOLDER_ID = process.env.DRIVE_FOLDER_ID;
+
+if (!DRIVE_FOLDER_ID) {
+  console.error('ERROR: DRIVE_FOLDER_ID env var is not set');
+  process.exit(1); // fail fast — better than a silent bug
+}
 let drive;
 
 // Initialize Google Drive API
